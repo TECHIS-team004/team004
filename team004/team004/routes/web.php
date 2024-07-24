@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/logout', function () {
+    // ログアウト処理をここに追加
+    return redirect('/');
+});
