@@ -13,7 +13,7 @@ body {
     width: 200px;
     border-right: 1px solid #ddd;
     padding: 10px;
-    background-color: #ffdddd;
+    background-color: #ffffff;
 }
 
 .content {
@@ -27,14 +27,14 @@ body {
     justify-content: flex-end;
     align-items: center;
     padding: 10px;
-    background-color: #ddffdd;
+    background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
 
 .header-buttons a {
-    background-color: #e0f7fa;
-    border: 2px solid #00838f;
-    color: #006064;
+    background-color: #fefefe;
+    border: 2px solid #001111;
+    color: #111111;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -43,7 +43,7 @@ body {
 
 /* ホバー時の効果 */
 .header-buttons a:hover {
-    background-color: #00838f;
+    background-color: #111111;
     color: #ffffff;
 }
 
