@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\ItemListController;
 use App\Http\Controllers\Auth\LoginController;
-=======
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
->>>>>>> baa30767d4e9171bad4fabf47b2a30398db9b67c
 
 /*
 |--------------------------------------------------------------------------
