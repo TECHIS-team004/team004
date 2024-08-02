@@ -12,7 +12,7 @@ class ItemListController extends Controller
         // 認証チェック
         if (!auth()->check()) {
             return redirect()->route('login');
-        }
+            }
 
         $items = Item::paginate(20); // 件数20まで
         return view('item_list', compact('items'));
@@ -25,8 +25,26 @@ class ItemListController extends Controller
             return redirect()->route('login');
         }
 
+        // 検索クエリを取得
         $query = $request->input('query');
-        $items = Item::where('name', 'LIKE', '%' . $query . '%')->paginate(10);
+        $date = $request->input('date');
+
+        // クエリビルダを使用して条件を追加
+        $items = Item::where(function($q) use ($query) {
+            $q->where('name', 'LIKE', '%' . $query . '%')
+              ->orWhere('id', $query) // IDの完全一致検索
+              ->orWhere('type', 'LIKE', '%' . $query . '%')
+              ->orWhere('detail', 'LIKE', '%' . $query . '%');
+        });
+
+        // 日付で絞り込み
+        if ($date) {
+            $items = $items->whereDate('created_at', '<=', $date)
+                           ->orWhereDate('updated_at', '<=', $date);
+        }
+
+        $items = $items->paginate(10);
+
         return view('item_list', compact('items'));
     }
 
@@ -37,17 +55,17 @@ class ItemListController extends Controller
             return redirect()->route('items.index');
         }
 
-        return view('items.item_register'); // 商品登録画面へ
+        return view('item_register'); // 商品登録画面へ
     }
 
     public function edit($id)
-    {
+        {
         // 管理者チェック
         if (!auth()->user()->is_admin) {
             return redirect()->route('items.index');
         }
 
         $item = Item::find($id);
-        return view('items.item_edit', compact('item')); // 商品編集画面へ
+        return view('item_edit', compact('item')); // 商品編集画面へ
     }
 }
