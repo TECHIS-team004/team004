@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +13,15 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-Route::get('/home', function () {
-    return view('home');
+Route::get('/', function() {
+    return redirect('login');
 });
 
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/logout', function () {
-    // ログアウト処理をここに追加
+    Auth::logout();
     return redirect('/');
 });
