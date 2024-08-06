@@ -73,3 +73,12 @@ body {
     height: auto; /* 高さを自動調整 */
     margin-bottom: 50px;
 }
+
+
+/* add start by akiyama */
+.userlist, .userlist td, .userlist th{
+    border:solid 1px #595959;
+    border-collapse:collapse;
+}
+
+/* add end by akiyama */

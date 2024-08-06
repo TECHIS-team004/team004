@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,6 @@ Route::get('/logout', function () {
     // ログアウト処理をここに追加
     return redirect('/');
 });
+
+
+Route::get('/users', [UserController::class, 'index']);
