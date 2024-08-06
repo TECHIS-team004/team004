@@ -11,7 +11,7 @@
         <div class="content">
             <div class="header">
                 <div class="header-buttons">
-                    <a href="{{ url('/register_account') }}">アカウント登録画面</a>
+                    <a href="{{ url('/register) }}">アカウント登録画面</a>
                     <a href="{{ url('/login') }}">ログイン画面</a>
                     <a href="{{ url('/logout') }}">ログアウト</a>
                 </div>
