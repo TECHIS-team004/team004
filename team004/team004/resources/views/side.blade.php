@@ -1,7 +1,3 @@
-<head>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
     <div class="sidebar">
         <div class="sidebar-content">
             <h3>商品管理システム</h3>
@@ -13,4 +9,3 @@
             <img src="{{ asset('images/team004.png') }}" alt="ロゴ画像">
         </div>
     </div>
-</body>
