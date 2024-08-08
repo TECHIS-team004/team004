@@ -5,6 +5,9 @@ use App\Http\Controllers\ItemListController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +19,16 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-Route::get('/home', function () {
-    return view('home');
+Route::get('/', function() {
+    return redirect('login');
 });
 
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/logout', function () {
-    // ログアウト処理をここに追加
+    Auth::logout();
     return redirect('/');
 });
 
@@ -43,3 +48,5 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/item_register', [ItemListController::class, 'create'])->name('items.create');
     Route::get('/item_edit/{id}', [ItemListController::class, 'edit'])->name('items.edit');
     });
+
+Route::get('/users', [UserController::class, 'index']);

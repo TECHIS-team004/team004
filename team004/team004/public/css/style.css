@@ -192,3 +192,11 @@ border: 2px solid #2f1048; /* 外側の枠線 */
 .form-container button:hover {
     background-color: #0056b3;
 }
+
+/* add start by akiyama */
+.userlist, .userlist td, .userlist th{
+    border:solid 1px #595959;
+    border-collapse:collapse;
+}
+
+/* add end by akiyama */
