@@ -1,6 +1,6 @@
     <div class="sidebar">
         <div class="sidebar-content">
-            <h3>商品管理システム</h3>
+            <h4>商品管理システム</h4>
             <ul>
                 <li><a href="{{ url('/item_list') }}">商品一覧</a></li>
             </ul>
