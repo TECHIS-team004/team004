@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="container h-100 mt-5">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-10 col-md-8 col-lg-6">
       <h3>商品登録</h3>
       <form action="{{ url('item_register') }}" method="post">
         @csrf
@@ -23,7 +19,4 @@
         <br>
         <button type="submit" class="btn btn-primary">登録</button>
       </form>
-    </div>
-  </div>
-</div>
 @endsection

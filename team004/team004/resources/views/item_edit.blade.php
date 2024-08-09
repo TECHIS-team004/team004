@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="container h-100 mt-5">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-10 col-md-8 col-lg-6">
       <h3>商品編集</h3>
       <form action="{{ url('item_edit/'. $item->id) }}" method="post">
         @csrf
@@ -24,7 +20,4 @@
         <button type="submit" class="btn btn-primary">編集</button>
         <a href="{{ url('item_delete/'. $item->id) }}">削除</a>
       </form>
-    </div>
-  </div>
-</div>
 @endsection

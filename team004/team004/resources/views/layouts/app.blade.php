@@ -72,11 +72,13 @@
         </nav>
 
         <div class="container">
-            @include('side')
+            @if(auth()->user())
+                @include('side')
+            @endif
             <main class="main-content">
-            @yield('content')
-        </main>
-    </div>
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
