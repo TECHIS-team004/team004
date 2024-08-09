@@ -3,6 +3,7 @@
             <h3>商品管理システム</h3>
             <ul>
                 <li><a href="{{ url('/item_list') }}">商品一覧</a></li>
+                <li><a href="{{ url('/users') }}">ユーザー一覧</a></li>
             </ul>
         </div>
         <div class="sidebar-logo">

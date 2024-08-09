@@ -37,21 +37,18 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/users', [UserController::class, 'index']);
-
 // 認証が必要なルート
-    Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/item_list', [ItemListController::class, 'index'])->name('items.index');
     Route::get('/item_list/search', [ItemListController::class, 'search'])->name('items.search');
-    });
+});
 
 // 管理者のみアクセス可能
-    Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
     Route::get('/item_register', [ItemListController::class, 'create'])->name('items.create');
     Route::post('/item_register', [ItemListController::class, 'store'])->name('items.create');
     Route::get('/item_edit/{id}', [ItemListController::class, 'edit'])->name('items.edit');
     Route::post('/item_edit/{id}', [ItemListController::class, 'update'])->name('items.edit');
     Route::get('/item_delete/{id}', [ItemListController::class, 'delete'])->name('items.delete');
-    });
-
-Route::get('/users', [UserController::class, 'index']);
+});
