@@ -26,7 +26,7 @@
                     <tr>
                         <th>ID</th>
                         <th>名前</th>
-                        <th>タイプ</th>
+                        <th>種別</th>
                         <th>詳細</th>
                         @if(auth()->check() && auth()->user()->is_admin)
 
