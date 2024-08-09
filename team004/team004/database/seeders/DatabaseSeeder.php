@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // テスト用の一般ユーザー
+        User::create([
+            'name' => 'Test User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'), // パスワードをハッシュ化
+            'is_admin' => 0, // 一般ユーザー
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // テスト用の管理者ユーザーを作成
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'), // パスワードをハッシュ化
+            'is_admin' => 1, // 管理者ユーザー
+        ]);
     }
 }

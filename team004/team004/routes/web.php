@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemListController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
@@ -29,6 +32,10 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 
+// ログイン関連のルート
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/users', [UserController::class, 'index']);
 // returns the home page with all posts
@@ -45,3 +52,16 @@ Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.ed
 Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
 // deletes a post
 Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
+// 認証が必要なルート
+    Route::middleware(['auth'])->group(function () {
+    Route::get('/item_list', [ItemListController::class, 'index'])->name('items.index');
+    Route::get('/item_list/search', [ItemListController::class, 'search'])->name('items.search');
+    });
+
+// 管理者のみアクセス可能
+    Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/item_register', [ItemListController::class, 'create'])->name('items.create');
+    Route::get('/item_edit/{id}', [ItemListController::class, 'edit'])->name('items.edit');
+    });
+
+Route::get('/users', [UserController::class, 'index']);

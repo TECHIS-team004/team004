@@ -1,4 +1,5 @@
 {
+    "type": "module",
     "private": true,
     "scripts": {
         "dev": "vite",
@@ -10,6 +11,7 @@
         "bootstrap": "^5.2.3",
         "jquery": "^3.6",
         "laravel-mix": "^6.0.11",
+        "laravel-vite-plugin": "^1.0.5",
         "lodash": "^4.17.21",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^3.1.2",
