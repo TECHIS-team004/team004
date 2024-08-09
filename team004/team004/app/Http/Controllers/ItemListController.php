@@ -84,6 +84,7 @@ class ItemListController extends Controller
             'type' => $request->type,
             'detail' => $request->detail,
             'created_user_id' => Auth::id(),
+            'updated_user_id' => Auth::id(),
         ]);
         return redirect('item_list');
     }
@@ -128,9 +129,9 @@ class ItemListController extends Controller
     // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
     public function delete(Request $request,$id)
     {
-        
+
         Item::find($id)->delete();
-        
+
         return redirect('item_list');
     }
 }
