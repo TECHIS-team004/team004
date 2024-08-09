@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 
 class ItemListController extends Controller
 {
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品一覧画面（表示）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
     public function index()
     {
         // 認証チェック
@@ -18,6 +22,9 @@ class ItemListController extends Controller
         return view('item_list', compact('items'));
     }
 
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品一覧画面（検索）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
     public function search(Request $request)
     {
         // 認証チェック
@@ -48,6 +55,9 @@ class ItemListController extends Controller
         return view('item_list', compact('items'));
     }
 
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品登録画面（表示）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
     public function create()
     {
         // 管理者チェック
@@ -58,6 +68,29 @@ class ItemListController extends Controller
         return view('item_register'); // 商品登録画面へ
     }
 
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品登録画面（登録）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:100',
+            'type' => 'required|max:100',
+            'detail' => 'required|max:500',
+        ]);
+
+        Item::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'detail' => $request->detail,
+            'created_user_id' => Auth::id(),
+        ]);
+        return redirect('item_list');
+    }
+
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品編集画面（表示）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
     public function edit($id)
         {
         // 管理者チェック
@@ -67,5 +100,37 @@ class ItemListController extends Controller
 
         $item = Item::find($id);
         return view('item_edit', compact('item')); // 商品編集画面へ
+    }
+
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品編集画面（更新）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'name' => 'required|max:100',
+            'type' => 'required|max:100',
+            'detail' => 'required|max:500',
+        ]);
+
+        $item = Item::find($id);
+        $item->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'detail' => $request->detail,
+            'updated_user_id' => Auth::id(),
+        ]);
+        return redirect('item_list');
+    }
+
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // 商品編集画面（削除）
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    public function delete(Request $request,$id)
+    {
+        
+        Item::find($id)->delete();
+        
+        return redirect('item_list');
     }
 }

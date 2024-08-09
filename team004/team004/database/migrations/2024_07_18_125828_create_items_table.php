@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('type', 100)->nullable()->default(null);
             $table->string('detail', 500)->nullable()->default(null);
-            $table->bigInteger('created_user_id')->unsigned();
-            $table->bigInteger('updated_user_id')->unsigned();
+            $table->bigInteger('created_user_id')->nullable()->unsigned();
+            $table->bigInteger('updated_user_id')->nullable()->unsigned();
             $table->timestamps();
     
             $table->index('name');
