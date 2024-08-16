@@ -18,6 +18,6 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary">編集</button>
-        <a href="{{ url('item_delete/'. $item->id) }}">削除</a>
+        <a class="btn btn-primary" href="{{ url('item_delete/'. $item->id) }}">削除</a>
       </form>
 @endsection
