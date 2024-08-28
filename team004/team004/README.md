@@ -28,5 +28,5 @@ https://github.com/TECHIS-team004/team004.git
 パスワード : password
 
 一般ユーザー
-メールアドレス : taro1@example.com
-パスワード : pass1234
+メールアドレス : jiro@example.com
+パスワード : pass1111
